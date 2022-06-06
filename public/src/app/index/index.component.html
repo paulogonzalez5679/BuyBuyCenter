@@ -1,0 +1,372 @@
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+
+<!-- *** Navbar *** -->
+<app-navbarindex></app-navbarindex>
+<!-- *** /Navbar *** -->
+
+<!-- *** init / portada *** -->
+<header class="masthead text-center">
+  <img class="" src="../../assets/img/buybuy/bbc_blanco.svg" class="logo-blanco" alt="bbc logo blanco"><br><br>
+  <a [routerLink]="['/pages/register']">
+  <img class="" src="../../assets/img/buybuy/boton_portada.svg" class="boton-blanco" alt="boton portada blanco">
+
+  </a>
+</header>
+<!-- init / portada -->
+
+<!-- *** categorias *** -->
+<div class="sesion-category text-center">
+  <div class="container">
+    <div class="input-group">
+      <input (keyup)='searchCategory()' type="text" class="form-control input-buscador" placeholder="Buscar"
+        name="seachText" id="seachText" [(ngModel)]="seachText">
+      <span class="input-group-addon">
+        <img (click)='searchCategory()' src="../../assets/img/buybuy/buscador.svg" class="img-buscador" alt="Buscdor">
+      </span>
+    </div>
+    <div class="row row-servicios justify-content-start">
+      <div class="col-lg-2 col-md-4 col-servicios" *ngFor="let category of arrayCategory">
+        <div data-aos="flip-left" data-aos-duration="1500" class="card-servicios" id="cardServ1">
+          <img class="img-icons-servicios mb-4 mx-auto" id="icoServ1" src="{{category.url}}" alt="{{category.nombre}}">
+          <p class="card-text-grey">{{category.nombre}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- *** #categorias *** -->
+
+<!-- *** tiendas premium *** -->
+
+
+
+
+<!-- <div class="sesion-category text-center">
+  <div *ngIf="arrayCategoryAux.length>0" class="container">
+    <img class="img-title-store mb-4 mx-auto" id="" src="../../assets/img/buybuy/tiendas primium.svg"
+      alt="Imagen tienda primium">
+    <br><br>
+    <div *ngIf="arrayCategoryAux.length>0" ng2-carouselamos class="slides-wrapper" [items]="arrayCategoryAux" [width]="1000"
+      [$prev]="prev" [$next]="next" [$item]="item"
+      (onSelectedItem)="selectedItem = $event.item; selectedIndex = $event.index">
+    </div>
+    <ng-template #prev>
+      <img src="../../assets/img/buybuy/flecha izq.svg" id="right" class="img-controler" />
+    </ng-template>
+    <ng-template #next>
+      <img src="../../assets/img/buybuy/flecha derecha.svg" id="right" class="img-controler" />
+    </ng-template>
+    <ng-template #item let-item let-i="index">
+      <div class="card slide-items">
+        <img src="../../assets/img/buybuy/tienda1-01.jpg" class="img-store">
+        <div class="title-store">
+          {{item.nombre}}
+        </div>
+        <img src="{{item.url}}" class="logo-store">
+        <a href="https://www.facebook.com/BuyBuyCenter" target="_blank" class="a-redes-sociales">
+          <img onmouseover="this.src='../../assets/img/buybuy/visitar sitio boton2.svg'"
+            onmouseout="this.src='../../assets/img/buybuy/visitar sitio boton.svg'" src="../../assets/img/buybuy/visitar sitio boton.svg"
+            class="" alt="">
+        </a>      </div>
+    </ng-template>
+  </div>
+</div>  -->
+<!-- *** #tiendas premium *** -->
+
+<!-- *** novedades *** -->
+<div class="sesion-news text-center">
+  <img class="img-title-news mb-4 mx-auto" loading="lazy" id="" src="../../assets/img/buybuy/novedades.svg"
+    alt="Imagen tienda primium">
+  <br><br>
+  <div class="card" *ngFor='let news of arrayNovedades; let i = index'>
+    <img class="img-news mb-4 mx-auto" id="" src="{{news.img}}" alt="Imagen novedades">
+  </div>
+</div>
+<!-- *** #novedades *** -->
+
+<!-- *** news *** -->
+<div class="sesion-news text-center ">
+  <div class="line-bg-gradient"> &nbsp;&nbsp;&nbsp; </div>
+  <img class="img-title-store mb-4 mx-auto" id="" src="../../assets/img/buybuy/participa por ti tienda online.svg"
+    alt="Imagen participa con tu tienda online">
+  <br><br>
+  <div class="row" style="max-width: 100%; margin: 0 auto;">
+    <div class="col-sm-4 text-center col-info">
+      <div class="col-steps">
+        <div class="badge number" style="display: none;">
+          <div class=" badge-number text-center">
+            <br>Paso <br>
+            1
+          </div>
+        </div>
+        <hr class="hr-mision show-xs" style="display: none;">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+        nonummy nibh euis
+      </div>
+    </div>
+    <div class="col-sm-4 text-center col-info">
+      <div class="col-steps">
+        <div class="badge number" style="display: none;">
+          <div class=" badge-number text-center">
+            <br>Paso <br>
+            2
+          </div>
+        </div>
+        <hr class="hr-mision show-xs" style="display: none;">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+        nonummy nibh euis
+      </div>
+    </div>
+    <div class="col-sm-4 text-center col-info">
+      <div class="col-steps">
+        <div class="badge number" style="display: none;">
+          <div class=" badge-number text-center">
+            <br>Paso <br>
+            3
+          </div>
+        </div>
+        <hr class="hr-mision show-xs" style="display: none;">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+        nonummy nibh euis
+      </div>
+    </div>
+  </div>
+  <img class="img-infografia mb-4 mx-auto" id="" src="../../assets/img/buybuy/infografia.svg" alt="Imagen infografia">
+  <div class="row" style="max-width: 100%; margin: 0 auto;">
+    <div class="col-sm-2 text-center"></div>
+    <div class="col-sm-4 text-center col-info">
+      <div class="col-steps">
+        <div class="badge number" style="display: none;">
+          <div class=" badge-number text-center">
+            <br>Paso <br>
+            4
+          </div>
+        </div>
+        <hr class="hr-mision show-xs" style="display: none;">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+        nonummy nibh euis
+      </div>
+    </div>
+    <div class="col-sm-4 text-center col-info">
+      <div class="col-steps">
+        <div class="badge number" style="display: none;">
+          <div class=" badge-number text-center">
+            <br>Paso <br>
+            5
+          </div>
+        </div>
+        <hr class="hr-mision show-xs" style="display: none;">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+        nonummy nibh euis
+      </div>
+    </div>
+    <div class="col-sm-2 text-center"></div>
+  </div>
+  <div class="line-bg-gradient"> &nbsp;&nbsp;&nbsp; </div>
+</div>
+<!-- *** #news *** -->
+
+<!-- *** mision vision *** -->
+<div class="sesion-mision text-center">
+  <div class="row container-mision">
+    <div class="col-sm-4 col-md-4 text-center col-mision col-padding">
+      <p class="p-title-mision">MISIÓN</p>
+      <img class="img-mision" src="../../assets/img/buybuy/mision icon.svg" alt="">
+      <hr class="hr-mision">
+      <p class="text-justify p-mision">
+        Ser la plataforma de e-commerce referente en ventas de
+        productos y servicios a través
+        de tiendas posicionadas promoviendo un comercio
+        formal, justo y transparente e
+        impulsando el branding de las
+        empresas a nivel nacional e internacional.
+      </p>
+    </div>
+    <div class="col-sm-4 col-md-4 text-center col-vision col-padding">
+      <p class="p-title-mision">VISIÓN</p>
+      <img class="img-mision" src="../../assets/img/buybuy/vision.svg" alt="">
+      <hr class="hr-mision">
+      <p class="text-justify p-mision">
+        BuyBuy Center tiene un enfoque social y busca promover
+        el consumo formal de marcas
+        locales así como su posicionamiento local e internacional
+        mediante una plataforma exclusiva que revoluciona la
+        manera de hacer negocios.
+      </p>
+    </div>
+    <div class="col-sm-4 col-md-4 text-center col-valores col-padding">
+      <p class="p-title-mision">VALORES</p>
+      <img class="img-mision" src="../../assets/img/buybuy/valores.svg" alt="">
+      <hr class="hr-mision">
+      <p class="text-justify p-mision">
+        Mente abierta propositiva e
+        innovadora
+      </p>
+    </div>
+  </div>
+</div>
+<!-- *** #mision vision *** -->
+
+<!-- *** novedades *** -->
+<div class="sesion-news text-center ">
+  <div class="line-bg-gradient"> &nbsp;&nbsp;&nbsp; </div>
+  <div class="container">
+    <div class="row" style="max-width: 100%; margin: 0 auto;">
+      <div class="col-sm-6 text-justify">
+        <p class="p-mision">
+          La iniciativa nace como respuesta a una oleada de oferta informal por grupos en distintas
+          plataformas que no valora la marca de la empresa sino se enfoca en productos que
+          muchas veces no tienen ningún control de calidad, no pagan impuestos y compiten de
+          manera desleal con precios más bajos que los del empresario o emprendedor formal. <br>
+          Su nombre Buy Buy Center nace como un juego de palabras que hace alusión a Bye Bye,
+          adiós en inglés y detrás de ello hay mucho simbolismo. Por un lado, quisimos recrear el momento que dos
+          personas
+          cercanas se despiden en un centro comercial, luego de haber
+          tenido un día fantástico de esparcimiento. <br>
+          Si se mira con detenimiento el logo, el carrito de compras parece una W que hace alusión
+          a la Web pues es un sitio de comercio electrónico. Pero si a esa W se le da la vuelta se
+          puede ver a dos personas tomadas de la mano lo que refuerza el concepto de Bye Bye. <br>
+          Por otro lado, se hace referencia a un cambio de vida y a la aceptación de una nueva
+          normalidad que da paso a un mundo de oportunidades donde la innovación es la clave.
+          Nos dijimos adiós sin saber que no estaría permitido volvernos a ver; sin embargo lo haremos en otras
+          circunstancias y en un entorno sin igual, los esperamos en BUY BUY CENTER.
+        </p>
+      </div>
+      <div class="col-sm-6 text-center">
+        <img class="img-mapa-bbc" src="../../assets/img/buybuy/mapa bbc.svg" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="line-bg-gradient"> &nbsp;&nbsp;&nbsp; </div>
+</div>
+<!-- *** #novedades *** -->
+
+<!-- *** contactos *** -->
+<div class="sesion-contact text-center">
+  <div class="container">
+    <div class="row justify-content-center row-contact">
+      <div class="col-sm-12 col-contact">
+        <img class="img-title-contact mb-4 mx-auto" id="" src="../../assets/img/buybuy/contactos.svg"
+          alt="Imagen participa con tu tienda online">
+      </div>
+      <div class="col-sm-12 text-left col-contact">
+        <form #messajeForm="ngForm" novalidate (ngSubmit)="onSaveMessage(messajeForm.value, messajeForm.valid)">
+          <div class="content content-form">
+            <div class="form-group">
+              <input type="text" name="message_name" required placeholder="Nombre" class="form-control input-contact"
+                [(ngModel)]="message.message_name" required #message_name="ngModel">
+              <small [hidden]="message_name.valid || (message_name.pristine && !messajeForm.submitted)"
+                class="text-danger">
+                Ingrese el nombre
+              </small>
+            </div>
+            <div class="form-group">
+              <input type="text" name="message_email" required placeholder="Email" class="form-control input-contact"
+                [(ngModel)]="message.message_email" required #message_email="ngModel"
+                pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$">
+              <small [hidden]="message_email.valid || (message_email.pristine && !messajeForm.submitted)"
+                class="text-danger">
+                Email inválido
+              </small>
+            </div>
+            <div class="form-group">
+              <input type="text" name="message_phone" placeholder="Teléfono" class="form-control input-contact"
+                [(ngModel)]="message.message_phone" required #message_phone="ngModel" pattern="">
+              <small [hidden]="message_phone.valid || (message_phone.pristine && !messajeForm.submitted)"
+                class="text-danger">
+                Ingrese el teléfono
+              </small>
+            </div>
+            <div class="form-group">
+              <textarea name="message_description" rows="4" cols="50" placeholder="Mensaje"
+                class="form-control input-contact" [(ngModel)]="message.message_description" required
+                #message_description="ngModel"></textarea>
+              <small [hidden]="message_description.valid || (message_description.pristine && !messajeForm.submitted)"
+                class="text-danger">
+                Ingrese el mensaje
+              </small>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 text-center">
+                <button type="submit" class="btn btn-fill btn-send btn-block">CONTÁCTANOS</button>
+              </div>
+              <div class="col-sm-6 text-center">
+                <button type="button" (click)='onCancelMessage()'
+                  class="btn btn-fill btn-cancel btn-block">CANCELAR</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-12 col-contact line-bg-gradient-contact"> &nbsp; </div>
+    </div>
+  </div>
+</div>
+<!-- *** #contactos *** -->
+
+<!-- *** footer *** -->
+<div class="sesion-footer text-center">
+  <div class="">
+    <div class="row justify-content-center row-items-footer">
+      <div class="col-sm-4 col-contact text-left">
+        <div class="div-items-footer">BUY BUY CENTER</div>
+        <div class="col-sm-12 col-contact gradient-footer"> &nbsp; </div>
+        <div class="div-items-footer">RECIENTES</div>
+        <div class="col-sm-12 col-contact gradient-footer"> &nbsp; </div>
+        <div class="div-items-footer">NOVEDADES</div>
+        <div class="col-sm-12 col-contact gradient-footer"> &nbsp; </div>
+        <div class="div-items-footer">CONTACTOS</div>
+      </div>
+      <div class="col-sm-4 col-center-footer">
+        <div class="div-items-footer text-left">CONTACTOS</div><br>
+        <div class="text-left">DIRECCIÓN: CUENCA - ECUADOR</div>
+        <div class="text-left">TELÉFONO: 0999262152</div>
+        <div class="text-left">MAIL: buybuycenter@gmail.com</div>
+      </div>
+      <div class="col-sm-4 col-contact">
+        <a href="https://www.facebook.com/BuyBuyCenter" target="_blank" class="a-redes-sociales">
+          <img onmouseover="this.src='../../assets/img/buybuy/facebook2.svg'"
+            onmouseout="this.src='../../assets/img/buybuy/facebook.svg'" src="../../assets/img/buybuy/facebook.svg"
+            class="img-redes-footer" alt="">
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=593 992258330&text=Saludos,%20deseo%20contactarme%20con%20la%20Buy%20Buy%20Center"
+          target="_blank" class="a-redes-sociales">
+          <img onmouseover="this.src='../../assets/img/buybuy/wpp2.svg'"
+            onmouseout="this.src='../../assets/img/buybuy/wpp.svg'" src="../../assets/img/buybuy/wpp.svg"
+            class="img-redes-footer" alt="">
+        </a>
+        <a href="https://www.linkedin.com/company/buy-buy-center/" target="_blank" class="a-redes-sociales">
+          <img onmouseover="this.src='../../assets/img/buybuy/linkedin2.svg'"
+            onmouseout="this.src='../../assets/img/buybuy/linkedin.svg'" src="../../assets/img/buybuy/linkedin.svg"
+            class="img-redes-footer" alt="">
+        </a>
+        <a href="https://www.instagram.com/buybuycenter/" target="_blank" class="a-redes-sociales">
+          <img onmouseover="this.src='../../assets/img/buybuy/instagram2.svg'"
+            onmouseout="this.src='../../assets/img/buybuy/instagram.svg'" src="../../assets/img/buybuy/instagram.svg"
+            class="img-redes-footer" alt="">
+        </a>
+      </div>
+    </div>
+    <br>
+    <div class="row justify-content-center line-bg-gradient-contact" style="max-width: 100%; margin: 0 auto;">
+      <div class="col-sm-12 col-contact">
+        <br>
+        <div class="text-footer">Powered By</div>
+        <a href="https://nikolasoft.com" target="_blank" class="a-redes-sociales">
+          <img src="../../assets/img/LogoNikolaSoft-01.svg" class="text-footer logo-nikola" alt="instagram">
+        </a>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- *** #footer *** -->
+
+
+<!-- modal category -->
+<app-modal-login></app-modal-login>
+
+
+

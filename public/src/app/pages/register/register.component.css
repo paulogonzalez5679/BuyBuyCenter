@@ -1,0 +1,171 @@
+::ng-deep .mat-step-header:nth-of-type(1) .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+    background-image: linear-gradient(to right, #fc9449, #f72981, #ab29c4 86%);
+    color: #fff !important;
+  }
+  ::ng-deep .mat-step-header:nth-of-type(2) .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-number {
+    background-image: linear-gradient(to right, #fc9449, #f72981, #ab29c4 86%);
+    color: #fff !important;
+  }
+  ::ng-deep .mat-step-header:nth-of-type(3) .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+    background-image: linear-gradient(to right, #fc9449, #f72981, #ab29c4 86%);
+    color: #fff !important;
+  }
+  
+  .mat-step-header .mat-step-icon {
+      background-color: rgba(167, 35, 35, 0.54) !important;
+      color: #fff !important;
+  }
+
+  .mat-step{
+      clear: both;
+    background-color: rgba(167, 35, 35, 0.54) !important;
+    color: red !important;
+}
+
+.mat-step-icon-selected {
+    background-color: rgba(167, 35, 35, 0.54) !important;
+    color: red !important;
+}
+
+/* ::ng-deep .mat-step-header:nth-of-type(1) .mat-step-icon {
+    background-color: red;
+ }  */
+
+@font-face {
+    font-family: GOTHIC;
+    src: url(../../../assets/fonts/GOTHIC.TTF) format("opentype");
+  }
+  @font-face {
+    font-family: GOTHICB;
+    src: url(../../../assets/fonts/GOTHICB.TTF) format("opentype");
+  }
+  .col-info {
+    background-image: linear-gradient(to right, #fc9449, #f72981, #ab29c4 86%);
+    /* margin: 2.5rem; */
+    padding: 0.3rem !important;
+    border-radius: 20px;
+  }
+  
+  .modal-body {
+    margin: 0 auto;
+    padding-top: 0px;
+    padding-right: 5rem;
+    padding-left: 5rem;
+    padding-bottom: 5rem;
+    border-radius: 20px !important;
+    background-color: #f6f6f6;
+    font-family: 'GOTHIC', 'arial', sans-serif;
+    font-weight: 900;
+  
+  }
+  
+  .modal-dialog {
+    margin-top: 2rem;
+    /* max-width: 40%; */
+    box-shadow: none !important;
+  }
+  
+  .ico-user {
+    font-size: 4rem;
+    margin: 0 auto;
+    position: relative;
+    /* left: -12px; */
+    top: 16px;
+    font-family: 'GOTHICB', 'arial', sans-serif;
+  }
+  
+  .badge-header {
+    /* font-size: 2rem; */
+    border-radius: 50px;
+    background-image: linear-gradient(to right, #fc9449, #f72981, #ab29c4 86%);
+    font-weight: bold;
+    padding: 0px !important;
+    padding-top: 1rem;
+    margin: 0 auto;
+    display: block !important;
+    max-width: 80px;
+    max-height: 80px;
+    min-height: 80px;
+    position: relative;
+    top: -38px;
+  }
+  
+  .form-control {
+    min-height: 6rem !important;
+    /* border-top-right-radius: 50px !important;
+    border-bottom-right-radius: 50px !important; */
+  }
+  
+  .img-input {
+    width: 2rem;
+  }
+  
+  .img-social {
+    width: 5rem;
+  }
+  
+  .input-group-addon {
+    background-color: transparent;
+    background-color: white;
+  }
+  
+  .btn-login {
+    border-radius: 50px;
+    background-color: #f72981;
+    font-family: 'GOTHICB', 'arial', sans-serif;
+  
+  }
+  
+  .btn-login:hover {
+    background-color: #606060;
+    border: solid 1px #606060;
+  }
+  
+  .loadding {
+    margin-top: 30vh;
+  }
+  
+  .register{
+      font-size: 10px !important;
+      color: #606060;
+      text-decoration: none;
+  }
+
+  h3 {
+    font-family: 'GOTHICB', 'arial', sans-serif !important;
+    color: #606060;
+    font-weight: bold !important;
+  }
+
+  .p-info {
+    font-family: 'GOTHIC', 'arial', sans-serif !important;
+    color: #B2B2B2;
+    font-weight: bold !important;
+  }
+  
+  .col-servicios {
+    padding: 5px !important;
+  }
+  
+  .img-icons-servicios {
+    width: 30px;
+    height: 30px;
+    margin-top: 1rem;
+  }
+  
+  .card-servicios {
+    background-color: #f6f6f6;
+    min-height: 80px;
+    margin-bottom: 0px;
+    border-radius: 8px;
+    border: #B2B2B2 solid 1px;
+  }
+  
+  .card-servicios:hover {
+    background-color: #e3e3e3;
+  }
+
+  .badge-light {
+    float: right;
+    float: top;
+  }

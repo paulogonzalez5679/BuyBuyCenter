@@ -1,0 +1,579 @@
+<div class="container">
+    <div class="" style="margin-top: 6rem;">
+
+        <!-- Paso 1: datos personales -->
+        <div *ngIf="showStepOne" class="modal-dialog">
+            <div *ngIf='islogging' id="loader" class="loadding">
+                <img src="assets/img/loader-preview.svg" alt="loading">
+            </div>
+            <div *ngIf='!islogging' class="col-info">
+                <div class="modal-body">
+                    <div *ngIf='islogging' id="loader">
+                        <img src="assets/img/loader-preview.svg" alt="loading">
+                    </div>
+                    <div class="">
+                        <div class="header text-center">
+                            <div class="badge badge-header text-center">
+                                <span class="ico-user">1</span>
+                            </div>
+                            <h3>INGRESA TUS DATOS PERSONALES</h3>
+                        </div>
+                        <form #stepOneForm="ngForm" novalidate
+                            (ngSubmit)="setStepOne(stepOneForm.value, stepOneForm.valid)">
+                            <div class="content">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <img src="../../../../assets/img/popup/nombre icon.svg" class="img-input"
+                                                alt="Nombre">
+                                        </span>
+                                        <input type="text" placeholder="NOMBRE" class="form-control" name="user_name"
+                                            [(ngModel)]="userRegister.user_name" required #user_name="ngModel">
+
+                                    </div>
+                                    <small [hidden]="user_name.valid || (user_name.pristine && !stepOneForm.submitted)"
+                                        class="text-danger">
+                                        Ingrese el nombre.
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <img src="../../../../assets/img/popup/apellido.svg" class="img-input"
+                                                alt="Apellido">
+                                        </span>
+                                        <input type="text" placeholder="APELLIDO" class="form-control" name="lastname"
+                                            [(ngModel)]="userRegister.user_lastname" required #lastname="ngModel">
+                                    </div>
+                                    <small [hidden]="lastname.valid || (lastname.pristine && !stepOneForm.submitted)"
+                                        class="text-danger">
+                                        ingrese el apellido.
+                                    </small>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-8">
+                                    <button type="submit" class="btn btn-fill btn-danger btn-block btn-wd btn-login">
+                                        CONTINUAR
+                                    </button>
+                                </div>
+                                <div class="col-sm-2"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #Paso 1: datos personales -->
+
+        <!-- Paso 2: Credenciales (email y pass) -->
+        <div *ngIf="showStepTwo" class="modal-dialog">
+            <div *ngIf='islogging' id="loader" class="loadding">
+                <img src="assets/img/loader-preview.svg" alt="loading">
+            </div>
+            <div *ngIf='!islogging' class="col-info">
+                <div class="modal-body">
+                    <div *ngIf='islogging' id="loader">
+                        <img src="assets/img/loader-preview.svg" alt="loading">
+                    </div>
+                    <div class="">
+                        <div class="header text-center">
+                            <div class="badge badge-header text-center">
+                                <span class="ico-user">2</span>
+                            </div>
+                            <h3>INGRESE SU MAIL Y CONTRASEÑA</h3>
+                        </div>
+                        <form #stepTwoForm="ngForm" novalidate
+                            (ngSubmit)="setStepTwo(stepTwoForm.value, stepTwoForm.valid)">
+                            <div class="content">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <img src="../../../../assets/img/popup/mail.svg" class="img-input"
+                                                alt="user">
+                                        </span>
+                                        <input type="email" placeholder="EMAIL" class="form-control" name="email"
+                                            [(ngModel)]="userRegister.user_email" required #email="ngModel"
+                                            pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$">
+
+                                    </div>
+                                    <small [hidden]="email.valid || (email.pristine && !stepTwoForm.submitted)"
+                                        class="text-danger">
+                                        Email inválido.
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <img src="../../../../assets/img/popup/contraseña.svg" class="img-input"
+                                                alt="Pass">
+                                        </span>
+                                        <input type="password" placeholder="CONTRASEÑA" class="form-control"
+                                            name="user_password" [(ngModel)]="userRegister.user_password" required
+                                            minlength="6" #user_password="ngModel">
+                                    </div>
+                                    <small [hidden]="user_password.valid || (user_password.pristine && !stepTwoForm.submitted)"
+                                        class="text-danger">
+                                        ingrese contraseña.
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <img src="../../../../assets/img/popup/contraseña.svg" class="img-input"
+                                                alt="Pass">
+                                        </span>
+                                        <input type="password" placeholder="CONFIRME CONTRASEÑA" class="form-control"
+                                            name="user_password_confirm"
+                                            [(ngModel)]="userRegister.user_password_confirm" required minlength="6"
+                                            #user_password_confirm="ngModel">
+                                    </div>
+                                    <small
+                                        [hidden]="user_password_confirm.valid || (user_password_confirm.pristine && !stepTwoForm.submitted)"
+                                        class="text-danger">
+                                        ingrese contraseña.
+                                    </small>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-8">
+                                    <button type="submit" class="btn btn-fill btn-danger btn-block btn-wd btn-login">
+                                        CONTINUAR
+                                    </button>
+                                </div>
+                                <div class="col-sm-2"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Paso 2: Credenciales (email y pass) -->
+
+        <!-- Paso 3: Código de seguridad -->
+        <div *ngIf="showStepThree" class="modal-dialog">
+            <div *ngIf='islogging' id="loader" class="loadding">
+                <img src="assets/img/loader-preview.svg" alt="loading">
+            </div>
+            <div *ngIf='!islogging' class="col-info">
+                <div class="modal-body">
+                    <div *ngIf='islogging' id="loader">
+                        <img src="assets/img/loader-preview.svg" alt="loading">
+                    </div>
+                    <div class="">
+                        <div class="header text-center">
+                            <div class="badge badge-header text-center">
+                                <span class="ico-user">3</span>
+                            </div>
+                            <h3>CONFIRME SU DIRECCIÓN CORREO ELECTRÓNICO:</h3>
+                            <p class="p-info">
+                                ENVIAMOS UN CÓDIGO A TU DIRECCIÓN <br>
+                                DE CORREO ELECTRÓNICO POR FAVOR <br>
+                                INGRESA EL CÓDIGO ENVIADO
+                            </p>
+                        </div>
+                        <form #stepThreeForm="ngForm" novalidate
+                            (ngSubmit)="setStepThree(stepThreeForm.value, stepThreeForm.valid)">
+                            <div class="content">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <img src="../../../../assets/img/popup/contraseña.svg" class="img-input"
+                                                alt="Pass">
+                                        </span>
+                                        <input type="text" placeholder="CÓDIGO DE SEGURIDAD" class="form-control"
+                                            name="user_security_code" [(ngModel)]="userRegister.user_security_code"
+                                            required minlength="6" #user_security_code="ngModel">
+                                    </div>
+                                    <small
+                                        [hidden]="user_security_code.valid || (user_security_code.pristine && !stepThreeForm.submitted)"
+                                        class="text-danger">
+                                        ingrese el código de seguridad.
+                                    </small>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-8">
+                                    <button type="submit" class="btn btn-fill btn-danger btn-block btn-wd btn-login">
+                                        CONTINUAR
+                                    </button>
+                                </div>
+                                <div class="col-sm-2"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Paso 3: Código de seguridad -->
+
+        <!-- Paso: 4 - Descripción -->
+        <div *ngIf="showStepFour" class="modal-dialog">
+            <div *ngIf='islogging' id="loader" class="loadding">
+                <img src="assets/img/loader-preview.svg" alt="loading">
+            </div>
+            <div *ngIf='!islogging' class="col-info">
+                <div class="modal-body">
+                    <div *ngIf='islogging' id="loader">
+                        <img src="assets/img/loader-preview.svg" alt="loading">
+                    </div>
+                    <div class="">
+                        <div class="header text-center">
+                            <div class="badge badge-header text-center">
+                                <span class="ico-user">4</span>
+                            </div>
+                            <h3>INSERTA UN TEXTO DESCRIPTIVO SOBRE
+                                TUS PRODUCTOS O SERVICIOS OFERTADOS
+                            </h3>
+                        </div>
+                        <form #stepFourForm="ngForm" novalidate
+                            (ngSubmit)="setStepFour(stepFourForm.value, stepFourForm.valid)">
+                            <div class="content">
+                                <div class="form-group">
+                                    <textarea name="user_description_services" rows="4" cols="50" class="form-control"
+                                        [(ngModel)]="userRegister.user_description_services" required
+                                        #user_description_services="ngModel"></textarea>
+                                    <small
+                                        [hidden]="user_description_services.valid || (user_description_services.pristine && !stepFourForm.submitted)"
+                                        class="text-danger">
+                                        ingrese una descripción.
+                                    </small>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-8">
+                                    <button type="submit" class="btn btn-fill btn-danger btn-block btn-wd btn-login">
+                                        CONTINUAR
+                                    </button>
+                                </div>
+                                <div class="col-sm-2"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #Paso: 4 - Descripción -->
+
+        <!-- Paso: 5 - seleccionar categorias -->
+        <div *ngIf="showStepFive" class="modal-dialog">
+            <div *ngIf='islogging' id="loader" class="loadding">
+                <img src="assets/img/loader-preview.svg" alt="loading">
+            </div>
+            <div *ngIf='!islogging' class="col-info">
+                <div class="modal-body">
+                    <div *ngIf='islogging' id="loader">
+                        <img src="assets/img/loader-preview.svg" alt="loading">
+                    </div>
+                    <div class="">
+                        <div class="header text-center">
+                            <div class="badge badge-header text-center">
+                                <span class="ico-user">5</span>
+                            </div>
+                            <h3>
+                                INGRESA LA CATEGORÍA DE TUS PRODUCTOS O SERVICIOS
+                            </h3>
+                        </div>
+                        <form #stepFourForm="ngForm" novalidate
+                            (ngSubmit)="setStepFive(stepFourForm.value, stepFourForm.valid)">
+                            <div class="content">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4" style="font-size: 12px;"
+                                            *ngFor="let category of arrayCategory; let index = index">
+                                            <bSwitch [switch-on-color]="'primary'" class=""
+                                                style="max-height: 10px !important; max-width: 20px;"
+                                                [ngClass]="['switch','switch-sidebar-image']"
+                                                (changeState)="selectedCategory($event, category, index)">
+                                            </bSwitch> {{category.nombre}}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 col-servicios text-center"
+                                            *ngFor="let c of userRegister.user_categorys; let i = index">
+                                            <div class="card-servicios">
+                                                <img class="img-icons-servicios" id="icoServ1" src="{{c.url}}"
+                                                    alt="{{c.nombre}}">
+                                                <p class="card-text-grey">{{c.nombre}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-8">
+                                    <button type="submit" class="btn btn-fill btn-danger btn-block btn-wd btn-login">
+                                        CONTINUAR
+                                    </button>
+                                </div>
+                                <div class="col-sm-2"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #Paso: 5 - seleccionar categorias -->
+
+        <!-- Paso: 6 - pais + web -->
+        <div *ngIf="showStepSix" class="modal-dialog">
+            <div *ngIf='islogging' id="loader" class="loadding">
+                <img src="assets/img/loader-preview.svg" alt="loading">
+            </div>
+            <div *ngIf='!islogging' class="col-info">
+                <div class="modal-body">
+                    <div *ngIf='islogging' id="loader">
+                        <img src="assets/img/loader-preview.svg" alt="loading">
+                    </div>
+                    <div class="">
+                        <div class="header text-center">
+                            <div class="badge badge-header text-center">
+                                <span class="ico-user">6</span>
+                            </div>
+                            <h3>
+                                SELECCIONA TU PAÍS DE ORIGEN
+                            </h3>
+                        </div>
+                        <form #stepSixForm="ngForm" novalidate
+                            (ngSubmit)="setStepSix(stepSixForm.value, stepSixForm.valid)">
+                            <div class="content">
+                                <div class="form-group">
+                                    <select name="user_country" [(ngModel)]="userRegister.user_country" required
+                                        class="form-control" #user_country="ngModel"
+                                        (ngModelChange)="selectedCountry($event)">
+                                        <option [selected]="true" value="">Seleccione el país</option>
+                                        <option *ngFor="let country of arrayCountries" [value]="country.country_name">
+                                            <i class="fa fa-user"></i> {{country.country_name}}</option>
+                                    </select>
+                                    <small
+                                        [hidden]="user_country.valid || (user_country.pristine && !stepSixForm.submitted)"
+                                        class="text-danger">
+                                        Seleccione el país.
+                                    </small>
+                                </div>
+                                <div class="header">
+                                    <div class="text-center">
+                                        <h3>ESCRIBE TU SITIO WEB</h3>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="SITIO WEB" class="form-control"
+                                            name="user_web" [(ngModel)]="userRegister.user_web" #user_web="ngModel">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-8">
+                                    <button type="submit" class="btn btn-fill btn-danger btn-block btn-wd btn-login">
+                                        FINALIZAR
+                                    </button>
+                                </div>
+                                <div class="col-sm-2"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #Paso: 6 - pais + web -->
+
+        <!-- Paso: 7 subir fotos de productos -->
+        <!-- <div *ngIf="showStepSeven" class="modal-dialog">
+            <div *ngIf='islogging' id="loader" class="loadding">
+                <img src="assets/img/loader-preview.svg" alt="loading">
+            </div>
+            <div *ngIf='!islogging' class="col-info">
+                <div class="modal-body">
+                    <div *ngIf='islogging' id="loader">
+                        <img src="assets/img/loader-preview.svg" alt="loading">
+                    </div>
+                    <div class="">
+                        <div class="header text-center">
+                            <div class="badge badge-header text-center">
+                                <span class="ico-user">7</span>
+                            </div>
+                            <h3>
+                                CARGA IMAGENES DE TUS PRINCIPALES PRODUCTOS
+                            </h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                a    
+                            </div>
+                            <div class="col-sm-4">
+                                a    
+                            </div>
+                            <div class="col-sm-4">
+                                a    
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- #Paso: 7 subir fotos de productos -->
+
+
+
+        <!-- <button type="btn" (click)='setValues()' class="btn btn-fill btn-danger btn-wd btn-login">
+            setear vlores
+        </button> -->
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <mat-horizontal-stepper [linear]="true" #stepper>
+            <mat-step [stepControl]="firstFormGroup" errorMessage="Datos requeridos">
+                <ng-template style="color: aqua !important;" matStepLabel>Datos personales</ng-template>
+                
+                <div class="modal-dialog">
+                    <div *ngIf='islogging' id="loader" class="loadding">
+                        <img src="assets/img/loader-preview.svg" alt="loading">
+                    </div>
+                    <div *ngIf='!islogging' class="modal-content col-info">
+                        <div class="modal-body">
+                        <div *ngIf='islogging' id="loader">
+                            <img src="assets/img/loader-preview.svg" alt="loading">
+                        </div>
+                            <form   method="#" action="#">
+                                <div class="">
+                                    <div class="header text-center">
+                                        <div class="badge badge-header text-center">
+                                            <i class="fa fa-user ico-user"></i>
+                                        </div>
+                                        <h3>INGRESA TUS DATOS PERSONALES</h3>
+                                        <br>
+                                    </div>
+                                    <form [formGroup]="firstFormGroup">
+                                        <div class="content">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <img src="../../../../assets/img/popup/nombre icon.svg" class="img-input"
+                                                            alt="user">
+                                                    </span>
+                                                    <input formControlName="firstCtrl" type="email" placeholder="EMAIL" class="form-control" name="email"
+                                                        [(ngModel)]="userRegister.email" required
+                                                        pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$">
+            
+                                                </div>
+                                               
+                                            </div>
+                                            <div class="form-group">
+                                                
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <div class="row text-center">
+                                            <div class="col-sm-2"></div>
+                                            <div class="col-sm-8">
+                                                <button type="submit"
+                                                    class="btn btn-fill btn-danger btn-block btn-wd btn-login">INGRESAR</button>
+            
+                                            </div>
+                                            <div class="col-sm-2"></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </mat-step>
+            <mat-step class="mat-step" [stepControl]="secondFormGroup" errorMessage="Obligatorio">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Credenciales</ng-template>
+                    <mat-label>Name</mat-label>
+                    <input class="form-control" matInput placeholder="Last name, First name" formControlName="secondCtrl" required>                    <div>
+                        <p>Go to a different step to see the error state</p>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="firstFormGroup" errorMessage="Datos requeridos">
+                <div class="modal-dialog">
+                    <div *ngIf='islogging' id="loader" class="loadding">
+                        <img src="assets/img/loader-preview.svg" alt="loading">
+                    </div>
+                    <div *ngIf='!islogging' class="modal-content col-info">
+                        <div class="modal-body">
+                        <div *ngIf='islogging' id="loader">
+                            <img src="assets/img/loader-preview.svg" alt="loading">
+                        </div>
+                            <form   method="#" action="#">
+                                <div class="">
+                                    <div class="header text-center">
+                                        <div class="badge badge-header text-center">
+                                            <i class="fa fa-user ico-user"></i>
+                                        </div>
+                                        <h3>INGRESA TUS DATOS PERSONALES</h3>
+                                        <br>
+                                    </div>
+                                    <form [formGroup]="firstFormGroup">
+                                        <div class="content">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <img src="../../../../assets/img/popup/nombre icon.svg" class="img-input"
+                                                            alt="user">
+                                                    </span>
+                                                    <input formControlName="firstCtrl" type="email" placeholder="EMAIL" class="form-control" name="email"
+                                                        [(ngModel)]="userRegister.email" required
+                                                        pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$">
+            
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <div class="row text-center">
+                                            <div class="col-sm-2"></div>
+                                            <div class="col-sm-8">
+                                                <button type="submit"
+                                                    class="btn btn-fill btn-danger btn-block btn-wd btn-login">INGRESAR</button>
+            
+                                            </div>
+                                            <div class="col-sm-2"></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </mat-step>
+           
+        </mat-horizontal-stepper> -->

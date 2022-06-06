@@ -1,0 +1,300 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card container-fluid">
+
+            <hr>
+            <form #formCountry="ngForm" action="" class="form-horizontal"
+                (ngSubmit)='addCountry(formCountry.value, formCountry.valid)' novalidate action="/" method="get">
+                <div class="row ">
+                    <div class="col-sm-3">
+                        <label for="country_id">ID</label>
+                        <input type="text" readonly class="form-control" name="country_id" id="country_id"
+                            placeholder="ID-Automático" [(ngModel)]="country.country_id" #country_id="ngModel"
+                            pattern="">
+                        <small [hidden]="country_id.valid || (country_id.pristine && !formCountry.submitted)"
+                            class="text-danger">
+                            Obligatorio</small>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="country_name">País</label>
+                        <input type="text" class="form-control" name="country_name" id="country_name"
+                            placeholder="Nombre del país" [(ngModel)]="country.country_name" #country_name="ngModel"
+                            required pattern="">
+                        <small [hidden]="country_name.valid || (country_name.pristine && !formCountry.submitted)"
+                            class="text-danger"> Obligatorio</small>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="country_code">Código ISO</label>
+                        <input type="text" class="form-control" name="country_code" id="country_code"
+                            placeholder="Código ISO" [(ngModel)]="country.country_code" #country_code="ngModel" required
+                            pattern="">
+                        <small [hidden]="country_code.valid || (country_code.pristine && !formCountry.submitted)"
+                            class="text-danger"> Obligatorio</small>
+                    </div>
+                    <div class="col-sm-3">
+                        <br>
+                        <button [disabled]='!formCountry.valid' type="submit"
+                            class="btn btn-fill btn-success btn-wd btn-block">
+                            <i *ngIf="isEdit" class="fa fa-edit"></i>
+                            <i *ngIf="!isEdit" class="fa fa-save"></i>
+                            {{isEdit?'Editar':'Agregar'}}
+                        </button>
+                    </div>
+                </div>
+                <hr>
+            </form>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="content">
+                        <div class="fresh-datatables">
+                            <table id="datatablesCountry" class="table table-striped table-no-bordered table-hover"
+                                cellspacing="0" width="100%" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">{{ dataTable.headerRow[0] }}</th>
+                                        <th class="text-center">{{ dataTable.headerRow[1] }}</th>
+                                        <th class="text-center">{{ dataTable.headerRow[2] }}</th>
+                                        <th class="text-center">{{ dataTable.headerRow[3] }}</th>
+                                        <th class="text-center">{{ dataTable.headerRow[4] }}</th>
+                                        <th class="text-center">{{ dataTable.headerRow[5] }}</th>
+                                        <th class="disabled-sorting text-center">{{ dataTable.headerRow[6] }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tBodyCountry">
+                                    <tr *ngFor="let country of arrayCountries; let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{country.country_id | slice:8}}</td>
+                                        <td>{{country.country_name}}</td>
+                                        <td>{{country.country_code}}</td>
+                                        <td class="text-center">
+                                            <button type="submit" class="btn btn-fill btn-success btn-xs"
+                                                (click)="showCities(country, i)" data-toggle="modal"
+                                                data-target="#modalCities">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </td>
+                                        <td class="text-center">
+                                            <button type="submit" class="btn btn-fill btn-primary btn-xs"
+                                                (click)="selectedCountry(country, i)">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                        </td>
+                                        <td class="text-center">
+                                            <button type="submit" class="btn btn-fill btn-danger btn-xs"
+                                                (click)="deleteCountry(country)">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="modalCities" tabindex="-1" role="dialog" aria-labelledby="modalCitiesLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalCitiesLabel">Administrar ciudades <i class="fa fa-arrow-right"></i>
+                        {{ country.country_name }}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="content">
+                            <form #formularioCiudad="ngForm" method="get" action="/" class="form-horizontal" novalidate
+                                (ngSubmit)="addCity(formularioCiudad.value, formularioCiudad.valid, formularioCiudad)">
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <!-- <label class="control-label">Nombre<span class="star">*</span></label> -->
+                                        <input id="city_id" type="hidden" class="form-control" name="city_id"
+                                            placeholder="ID" [ngModel]="city.city_id"
+                                            #city_id="ngModel">
+                                        <input id="city_name" type="text" class="form-control" name="city_name"
+                                            placeholder="Nombre de la ciudad" [ngModel]="city.city_name" required
+                                            #city_name="ngModel">
+                                        <small
+                                            [hidden]="city_name.valid || (city_name.pristine && !formularioCiudad.submitted)"
+                                            class="text-danger">
+                                            Obligatorio
+                                        </small>
+                                    </div>
+                                    <div class="col-sm-3 text-center">
+                                        <button type="submit" class="btn btn-success btn-fill">
+                                            {{ isEditCity == false ? 'AGREGAR' : 'EDITAR'  }}
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-3 text-center">
+                                        <button (click)='cleanCity()' type="button" class="btn btn-primary btn-fill">
+                                            LIMPIAR
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <hr>
+                            <table id="" class="table table-bordered table-hover" cellspacing="0" width="100%"
+                                style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th class=" text-center">#</th>
+                                        <th class=" text-center">Código</th>
+                                        <th class=" text-center">Nombre / Ciudad</th>
+                                        <th class=" text-center">Editar</th>
+                                        <th class=" text-center">Eliminar</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="tBodyCountry">
+                                    <tr *ngFor="let city of arrayCities[index]; let j = index ">
+                                        <td class=" text-center">{{j+1}}</td>
+                                        <td class=" text-center">#{{city.city_id | slice: 0-3}}</td>
+                                        <td class=" text-center">{{city.city_name}}</td>
+                                        <td class="text-center">
+                                            <button type="submit" class="btn btn-fill btn-primary btn-xs"
+                                                (click)="editCity(city)">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                        </td>
+                                        <td class="text-center">
+                                            <button type="submit" class="btn btn-fill btn-danger btn-xs"
+                                                (click)="deleteCity(city)">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Close</button>
+                    <button (click)="test()" type="button" class="btn btn-success btn-fill">Save changes</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- <div class="modal fade" id="modalCities" tabindex="-1" role="dialog" aria-labelledby="modalCitiesLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalCitiesLabel">Administrar ciudades <i class="fa fa-arrow-right"></i>
+                        {{ countryEdit.nombre }} </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+
+                        <div class="content">
+                            <form #formularioCiudad="ngForm" method="get" action="/" class="form-horizontal" novalidate
+                                (ngSubmit)="registerCity(formularioCiudad.value, formularioCiudad.valid, formularioCiudad)">
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <label class="control-label">Nombre<span class="star">*</span></label>
+
+                                        <input id="nombreCity" type="text" class="form-control" name="nombreCity"
+                                            placeholder="ej. Cuenca" [ngModel]="registerCities.nombreCity" required
+                                            #nombreCity="ngModel" pattern="[A-Za-z]{3,10}">
+                                        <small
+                                            [hidden]="nombreCity.valid || (nombreCity.pristine && !formularioCiudad.submitted)"
+                                            class="text-danger">
+                                            Obligatorio /<i> sin carácteres especiales </i>
+                                        </small>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label class="control-label">Abreviatura<span class="star">*</span></label>
+                                        <input id="abreviationCity" type="text" class="form-control"
+                                            name="abreviationCity" placeholder="ej. 593"
+                                            [ngModel]="registerCities.abreviationCity" required
+                                            #abreviationCity="ngModel" pattern="[A-Za-z]{3}">
+                                        <small
+                                            [hidden]="abreviationCity.valid || (abreviationCity.pristine && !formularioCiudad.submitted)"
+                                            class="text-danger">
+                                            Obligatorio /<i> solo números </i>
+                                        </small>
+                                    </div>
+                                    <br>
+                                    <div class="checkbox col-sm-3">
+
+                                        <div class="checkbox">
+                                            <input (click)="funhabilitarCity()" id="estadoCity" name="estadoCity"
+                                                type="checkbox" [checked]="estadoNewCity==true">
+                                            <label class="" for="estadoCity">Estado
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <button type="submit" class="btn btn-success btn-fill">
+                                            {{ isEditCity == false ? 'AGREGAR' : 'EDITAR'  }}
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            </form>
+                            <table id="" class="table table-striped table-no-bordered table-hover" cellspacing="0"
+                                width="100%" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Nombre / Ciudad</th>
+                                        <th>Estado</th>
+                                        <th class="disabled-sorting text-right">Opciones</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="tBodyCountry">
+                                    <tr *ngFor="let city of arrayCities[position]">
+                                        <td>{{city.abreviationCity}}</td>
+                                        <td>{{city.nombreCity}}</td>
+                                        <td>
+                                            <ng-container *ngIf="city.estadoCity==true; else elseEstado">
+                                                <button class="btn btn-success btn-fill btn-xs">
+                                                    <i class="fa fa-check"></i>
+                                                </button>
+
+                                            </ng-container>
+                                            <ng-template #elseEstado>
+                                                <button class="btn btn-danger btn-fill btn-xs">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </ng-template>
+                                        </td>
+                                        <td class="text-right">
+                                            <a (click)="editarCity(city)" class="btn btn-simple btn-warning btn-icon"><i
+                                                    class="fa fa-edit"></i></a>
+                                            <a (click)="deleteCity(city, countryEdit)"
+                                                class="btn btn-simple btn-danger btn-icon"><i
+                                                    class="fa fa-trash"></i></a>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>
