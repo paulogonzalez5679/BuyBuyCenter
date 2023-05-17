@@ -1,4 +1,4 @@
-*Buybuy Center
+*Buybuy Center* 
 This project is very significant for me since it was the first one that I carried out at a macro level, since I put into practice several of my knowledge, additionally it helped many micro-enterprises and ventures to be able to sell their products despite the pandemic that we were experiencing. .
 This project also involved teamwork, in order to solve it on time, several activities were generated and several disciplines were agreed, such as the marketing, design, development, QA and infrastructure team, as such 1 person could belong to several teams, so Understanding each other was easier and knowing what we needed at a certain time, in addition to all this, seeing that it is scalable gave us more ideas such as a catalog of virtual reality and augmented reality products and others.
 Work with servers, streaming services and security for transfers when purchases are made, development in Angular and as a database and additional services I work with FireBase
